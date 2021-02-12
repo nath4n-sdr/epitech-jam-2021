@@ -1,0 +1,24 @@
+{
+  "name": "epitech-jam-2021",
+  "version": "0.1.0",
+  "description": "MONKE",
+  "main": "src/index.ts",
+  "repository": "git@github.com:MrSquaare/epitech-jam-2021.git",
+  "author": "Guillaume Bonnet <guillaume.bonnet@epitech.eu>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "browser": "browser-sync start --files dist/ --server --ss dist/",
+    "watch": "nodemon --watch src/ --ext ts --exec 'yarn build'",
+    "dev": "(yarn watch &) && (yarn browser)"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.14",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.0.0",
+    "three": "^0.125.2"
+  }
+}

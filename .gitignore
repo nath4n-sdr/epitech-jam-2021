@@ -1,0 +1,11 @@
+# Build
+dist/
+
+# Node
+node_modules/
+
+# Jetbrains
+.idea/
+
+# Visual Studio Code
+.vscode/
