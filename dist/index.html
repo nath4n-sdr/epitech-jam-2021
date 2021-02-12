@@ -14,9 +14,19 @@
 </head>
 
 <body>
+    <video autoplay="autoplay" id="camera">
+
+    </video>
+    <label>
+        <select id="cameraSelect">
+        </select>
+    </label>
+    <button id="cameraStartButton">Start</button>
+    <button id="cameraStopButton">Stop</button>
+
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="index.js" async></script>
+    <script id="common-js" data-main="index.js" src="https://cdn.jsdelivr.net/npm/common-js"></script>
 </body>
 
 </html>
