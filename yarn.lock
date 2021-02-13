@@ -9,6 +9,13 @@
   dependencies:
     "@babel/highlight" "^7.10.4"
 
+"@babel/code-frame@7.12.11":
+  version "7.12.11"
+  resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.11.tgz#f4ad435aa263db935b8f10f2c552d23fb716a63f"
+  integrity sha512-Zt1yodBx1UcyiePMSkWnU4hPqhwq7hGi2nFL1LeA3EUl+q2LQx16MISgJ0+z7dnmgvP9QtIleuETGOiOH1RcIw==
+  dependencies:
+    "@babel/highlight" "^7.10.4"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.5.5":
   version "7.12.13"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.13.tgz#dcfc826beef65e75c50e21d3837d7d95798dd658"
@@ -1589,6 +1596,14 @@
     "@tensorflow-models/blazeface" "0.0.5"
     rimraf "^3.0.2"
 
+"@tensorflow/tfjs-backend-cpu@2.8.5":
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-cpu/-/tfjs-backend-cpu-2.8.5.tgz#3fc8afcecffe669691dd3dfa9256e08a058e8d4d"
+  integrity sha512-6Wpp5wPkNzAm1MovtXU9Gs3hIRl/iqc7CUHlqCB4hUBIDHM7zek7vm7JjQv5IopzYNtHnuasSklNR9kb4ZAOdA==
+  dependencies:
+    "@types/seedrandom" "2.4.27"
+    seedrandom "2.4.3"
+
 "@tensorflow/tfjs-backend-cpu@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-cpu/-/tfjs-backend-cpu-3.0.0.tgz#73463192bd6965624260641a909fd273a7b0fa11"
@@ -1609,15 +1624,43 @@
     "@types/webgl2" "0.0.5"
     seedrandom "2.4.3"
 
+"@tensorflow/tfjs-backend-webgl@^2.8.5":
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-backend-webgl/-/tfjs-backend-webgl-2.8.5.tgz#3942d8f0956edfd462ec684977c78265c13c72f4"
+  integrity sha512-/HjutyY6QYqBoiNdZobQS+RbxZ4VlVEty10OuY3jLJEhWn3E0kG2ctKyJrSkuGDZy37LJardezdQK7zPpR78cw==
+  dependencies:
+    "@tensorflow/tfjs-backend-cpu" "2.8.5"
+    "@types/offscreencanvas" "~2019.3.0"
+    "@types/seedrandom" "2.4.27"
+    "@types/webgl-ext" "0.0.30"
+    "@types/webgl2" "0.0.5"
+    seedrandom "2.4.3"
+
 "@tensorflow/tfjs-converter@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-converter/-/tfjs-converter-3.0.0.tgz#9b2b6406162a194ade36bcadf0161f9e0a42ae69"
   integrity sha512-3Mw7gLQiG65rap8EHKaoPxaWkwjz1hH8EbsDAaatW/ez5bWFY576hdmn/dXN56XOfdvNMDJjTgXTiU6VApH6Sg==
 
+"@tensorflow/tfjs-converter@^2.8.5":
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-converter/-/tfjs-converter-2.8.5.tgz#49db25473462e5b6532315e8f99c4d26b431c530"
+  integrity sha512-ddxUx3+XdM8fWNBJsksu1mD8+si8LSvDAp638Ddf+iS2Peh3HdGG/jvCi8QDpn1tAcvW8ImrfuGVZ6ulP4k/mg==
+
 "@tensorflow/tfjs-core@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-3.0.0.tgz#1d5a87f225c3e7cb77f670dbd2d8a3f3e5f6d8e8"
   integrity sha512-bqE6q8afvXtTa21T27+/YIqwj0wvoH3leeAl8ciNvGuOVmYA69hIaDfwthSA8WsvqR0BQDK+8qDxR/BEUtmj7g==
+  dependencies:
+    "@types/offscreencanvas" "~2019.3.0"
+    "@types/seedrandom" "2.4.27"
+    "@types/webgl-ext" "0.0.30"
+    node-fetch "~2.6.1"
+    seedrandom "2.4.3"
+
+"@tensorflow/tfjs-core@^2.8.5":
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-core/-/tfjs-core-2.8.5.tgz#4b3b2f50ccc85af495aa4406adad2b47486f4d5e"
+  integrity sha512-djhwPl/AJZmoBsXGwr0kU4Cn/SQ8uTSPgf2qcIQQPuJnhdEXiXgaV5Fcwn+fSl9AItAg1X669FdvOGn+WgOXoA==
   dependencies:
     "@types/offscreencanvas" "~2019.3.0"
     "@types/seedrandom" "2.4.27"
@@ -1900,7 +1943,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@typescript-eslint/eslint-plugin@^4.5.0":
+"@typescript-eslint/eslint-plugin@^4.15.0", "@typescript-eslint/eslint-plugin@^4.5.0":
   version "4.15.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.15.0.tgz#13a5a07cf30d0d5781e43480aa2a8d38d308b084"
   integrity sha512-DJgdGZW+8CFUTz5C/dnn4ONcUm2h2T0itWD85Ob5/V27Ndie8hUoX5HKyGssvR8sUMkAIlUc/AMK67Lqa3kBIQ==
@@ -1937,7 +1980,7 @@
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
-"@typescript-eslint/parser@^4.5.0":
+"@typescript-eslint/parser@^4.15.0", "@typescript-eslint/parser@^4.5.0":
   version "4.15.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.15.0.tgz#8df94365b4b7161f9e8514fe28aef19954810b6b"
   integrity sha512-L6Dtbq8Bc7g2aZwnIBETpmUa9XDKCMzKVwAArnGp5Mn7PRNFjf3mUzq8UeBjL3K8t311hvevnyqXAMSmxO8Gpg==
@@ -4613,7 +4656,7 @@ eslint-plugin-react-hooks@^4.2.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz#8c229c268d468956334c943bb45fc860280f5556"
   integrity sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==
 
-eslint-plugin-react@^7.21.5:
+eslint-plugin-react@^7.21.5, eslint-plugin-react@^7.22.0:
   version "7.22.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.22.0.tgz#3d1c542d1d3169c45421c1215d9470e341707269"
   integrity sha512-p30tuX3VS+NWv9nQot9xIGAHBXR0+xJVaZriEsHoJrASGCJZDJ8JLNM0YqKqI0AKm6Uxaa1VUHoNEibxRCMQHA==
@@ -4724,6 +4767,49 @@ eslint@^7.11.0:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
+eslint@^7.20.0:
+  version "7.20.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.20.0.tgz#db07c4ca4eda2e2316e7aa57ac7fc91ec550bdc7"
+  integrity sha512-qGi0CTcOGP2OtCQBgWZlQjcTuP0XkIpYFj25XtRTQSHC+umNnp7UMshr2G8SLsRFYDdAPFeHOsiteadmMH02Yw==
+  dependencies:
+    "@babel/code-frame" "7.12.11"
+    "@eslint/eslintrc" "^0.3.0"
+    ajv "^6.10.0"
+    chalk "^4.0.0"
+    cross-spawn "^7.0.2"
+    debug "^4.0.1"
+    doctrine "^3.0.0"
+    enquirer "^2.3.5"
+    eslint-scope "^5.1.1"
+    eslint-utils "^2.1.0"
+    eslint-visitor-keys "^2.0.0"
+    espree "^7.3.1"
+    esquery "^1.4.0"
+    esutils "^2.0.2"
+    file-entry-cache "^6.0.0"
+    functional-red-black-tree "^1.0.1"
+    glob-parent "^5.0.0"
+    globals "^12.1.0"
+    ignore "^4.0.6"
+    import-fresh "^3.0.0"
+    imurmurhash "^0.1.4"
+    is-glob "^4.0.0"
+    js-yaml "^3.13.1"
+    json-stable-stringify-without-jsonify "^1.0.1"
+    levn "^0.4.1"
+    lodash "^4.17.20"
+    minimatch "^3.0.4"
+    natural-compare "^1.4.0"
+    optionator "^0.9.1"
+    progress "^2.0.0"
+    regexpp "^3.1.0"
+    semver "^7.2.1"
+    strip-ansi "^6.0.0"
+    strip-json-comments "^3.1.0"
+    table "^6.0.4"
+    text-table "^0.2.0"
+    v8-compile-cache "^2.0.3"
+
 espree@^7.3.0, espree@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/espree/-/espree-7.3.1.tgz#f2df330b752c6f55019f8bd89b7660039c1bbbb6"
@@ -4738,7 +4824,7 @@ esprima@^4.0.0, esprima@^4.0.1:
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
 
-esquery@^1.2.0:
+esquery@^1.2.0, esquery@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/esquery/-/esquery-1.4.0.tgz#2148ffc38b82e8c7057dfed48425b3e61f0f24a5"
   integrity sha512-cCDispWt5vHHtwMY2YrAQ4ibFkAL8RbH5YGBnZBc90MolvvfkkQcJro/aZiAQUlQ3qgrYS6D6v8Gc5G5CQsc9w==
@@ -8897,6 +8983,11 @@ prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
+
+prettier@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.2.1.tgz#795a1a78dd52f073da0cd42b21f9c91381923ff5"
+  integrity sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
 
 pretty-bytes@^5.3.0:
   version "5.5.0"

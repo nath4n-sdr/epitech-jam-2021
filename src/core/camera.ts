@@ -11,10 +11,8 @@ export class Camera {
     this._stream = await navigator.mediaDevices.getUserMedia(this.constraints);
   }
 
-  async stop() {
-    this._stream?.getTracks().forEach((track) => {
-      track.stop();
-    });
+  async stop(): Promise<void> {
+    this._stream?.getTracks().forEach((track) => track.stop());
   }
 
   get stream(): MediaStream | undefined {
@@ -23,7 +21,9 @@ export class Camera {
 
   static async getDeviceIds(): Promise<string[]> {
     const devices = await navigator.mediaDevices.enumerateDevices();
-    const cameraDevices = devices.filter((device) => device.kind === "videoinput");
+    const cameraDevices = devices.filter((device) => {
+      return device.kind === "videoinput";
+    });
 
     return cameraDevices.map((device) => device.deviceId);
   }

@@ -1,14 +1,15 @@
-import React, {FC, useEffect, useRef} from "react";
-import {Camera} from "../../core/camera";
+import React, { FC, RefObject, useEffect, VideoHTMLAttributes } from "react";
+import { Camera } from "../../core/camera";
 
 type Props = {
   constraints: MediaStreamConstraints;
-}
+  videoRef: RefObject<HTMLVideoElement>;
+  videoProps: VideoHTMLAttributes<HTMLVideoElement>;
+};
 
 export const CameraComp: FC<Props> = (props) => {
-  const {constraints} = props;
+  const { constraints, videoRef, videoProps } = props;
   const camera = new Camera(constraints);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     camera.start().then(() => {
@@ -18,7 +19,5 @@ export const CameraComp: FC<Props> = (props) => {
     });
   }, []);
 
-  return (
-    <video autoPlay={true} ref={videoRef}/>
-  )
-}
+  return <video autoPlay={true} ref={videoRef} {...videoProps} />;
+};
