@@ -21,6 +21,6 @@
 
 .gif {
   width: 100%;
-  height: 30vh;
+  height: 100%;
   object-fit: cover;
 }
