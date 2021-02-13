@@ -20,7 +20,7 @@ async function fetchGiphyGifs(keyWord: string, limit: number) {
   return response.data;
 }
 
-export default async function getGifsUrls(keyWord: string, limit: number) {
+async function getGifsUrls(keyWord: string, limit: number) {
   const tenors = await fetchTenorsGifs(keyWord, limit);
   const giphy = await fetchGiphyGifs(keyWord, limit);
   var urlsList: any[] = [];
@@ -32,4 +32,17 @@ export default async function getGifsUrls(keyWord: string, limit: number) {
     urlsList.push(gifs["images"]["original"]["url"]);
   });
   console.log(urlsList);
+}
+
+export default async function generateGifsBank() {
+  const bank: any[] = [
+    { feeling: "happy", gifs: await getGifsUrls("happy monkey", 50) },
+    { feeling: "neutral", gifs: await getGifsUrls("neutral monkey", 50) },
+    { feeling: "angry", gifs: await getGifsUrls("angry monkey", 50) },
+    { feeling: "sad", gifs: await getGifsUrls("sad monkey", 50) },
+    { feeling: "fearful", gifs: await getGifsUrls("fearful monkey", 50) },
+    { feeling: "surprised", gifs: await getGifsUrls("surprised monkey", 50) },
+  ];
+
+  return bank;
 }
