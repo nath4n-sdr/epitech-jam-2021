@@ -1,0 +1,37 @@
+#OLD MASK
+
+ const length = Math.sqrt( glasses.up.x ** 2 + glasses.up.y ** 2 + glasses.up.z ** 2 );
+ glasses.up.x /= length + 30;
+ glasses.up.y /= length + 30;
+ const eyeDist = Math.sqrt(
+                    ( face.annotations.leftEyeUpper1[ 3 ][ 0 ] - face.annotations.rightEyeUpper1[ 3 ][ 0 ] ) ** 2 +
+                    ( face.annotations.leftEyeUpper1[ 3 ][ 1 ] - face.annotations.rightEyeUpper1[ 3 ][ 1 ] ) ** 2 +
+                    ( face.annotations.leftEyeUpper1[ 3 ][ 2 ] - face.annotations.rightEyeUpper1[ 3 ][ 2 ] ) ** 2
+                );
+                glasses.scale.x = eyeDist / 100;
+                glasses.scale.y = eyeDist / 70;
+                glasses.scale.z = eyeDist / 100;
+
+#PRESENT MASK
+
+ glasses.position.y = -face.annotations.midwayBetweenEyes[ 0 ][ 1 ] - 200;
+                glasses.position.z = -camera.position.z + face.annotations.midwayBetweenEyes[ 0 ][ 2 ];
+
+                // Calculate an Up-Vector using the eyes position and the bottom of the nose
+                glasses.up.x = face.annotations.midwayBetweenEyes[ 0 ][ 0 ] - face.annotations.noseBottom[ 0 ][ 0 ];
+                glasses.up.y = -( face.annotations.midwayBetweenEyes[ 0 ][ 1 ] - face.annotations.noseBottom[ 0 ][ 1 ] );
+                glasses.up.z = face.annotations.midwayBetweenEyes[ 0 ][ 2 ] - face.annotations.noseBottom[ 0 ][ 2 ];
+                const length = Math.sqrt( glasses.up.x ** 2 + glasses.up.y ** 2 + glasses.up.z ** 2 );
+                glasses.up.x /= length;
+                glasses.up.y /= length;
+                glasses.up.z /= length;
+
+                // Scale to the size of the head
+                const eyeDist = Math.sqrt(
+                    ( face.annotations.leftEyeUpper1[ 3 ][ 0 ] - face.annotations.rightEyeUpper1[ 3 ][ 0 ] ) ** 2 +
+                    ( face.annotations.leftEyeUpper1[ 3 ][ 1 ] - face.annotations.rightEyeUpper1[ 3 ][ 1 ] ) ** 2 +
+                    ( face.annotations.leftEyeUpper1[ 3 ][ 2 ] - face.annotations.rightEyeUpper1[ 3 ][ 2 ] ) ** 2
+                );
+                glasses.scale.x = eyeDist / 150;
+                glasses.scale.y = eyeDist / 150;
+                glasses.scale.z = eyeDist / 150;
