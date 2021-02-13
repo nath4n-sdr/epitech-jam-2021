@@ -1,5 +1,5 @@
 import generateGifsBank from "../providers/gifProviders";
-import {GifCollection} from "../models/gifCollection";
+import { GifCollection } from "../models/gifCollection";
 
 export class GifCollectionStore {
   async fetch(): Promise<void> {
