@@ -1,19 +1,11 @@
 export class Camera {
   constraints: MediaStreamConstraints;
 
-  private _stream?: MediaStream;
-
   constructor(constraints: MediaStreamConstraints) {
     this.constraints = constraints;
   }
 
-  async start(): Promise<void> {
-    this._stream = await navigator.mediaDevices.getUserMedia(this.constraints);
-  }
-
-  async stop(): Promise<void> {
-    this._stream?.getTracks().forEach((track) => track.stop());
-  }
+  private _stream?: MediaStream;
 
   get stream(): MediaStream | undefined {
     return this._stream;
@@ -26,5 +18,13 @@ export class Camera {
     });
 
     return cameraDevices.map((device) => device.deviceId);
+  }
+
+  async start(): Promise<void> {
+    this._stream = await navigator.mediaDevices.getUserMedia(this.constraints);
+  }
+
+  async stop(): Promise<void> {
+    this._stream?.getTracks().forEach((track) => track.stop());
   }
 }

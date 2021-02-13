@@ -11,7 +11,9 @@ export const CameraSelectComp: FC<Props> = (props) => {
   const selectRef = useRef<HTMLSelectElement>(null);
 
   useEffect(() => {
-    Camera.getDeviceIds().then((deviceIds) => setDeviceIds(deviceIds));
+    Camera.getDeviceIds()
+      .then((deviceIds) => setDeviceIds(deviceIds))
+      .catch(console.error);
   }, []);
 
   const onClick = () => {

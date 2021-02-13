@@ -12,11 +12,14 @@ export const CameraComp: FC<Props> = (props) => {
   const camera = new Camera(constraints);
 
   useEffect(() => {
-    camera.start().then(() => {
-      if (videoRef.current && camera.stream) {
-        videoRef.current.srcObject = camera.stream;
-      }
-    });
+    camera
+      .start()
+      .then(() => {
+        if (videoRef.current && camera.stream) {
+          videoRef.current.srcObject = camera.stream;
+        }
+      })
+      .catch(console.error);
   }, []);
 
   return <video autoPlay={true} ref={videoRef} {...videoProps} />;
