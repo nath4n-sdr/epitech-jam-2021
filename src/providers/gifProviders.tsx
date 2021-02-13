@@ -23,12 +23,12 @@ async function fetchGiphyGifs(keyWord: string, limit: number) {
 async function getGifsUrls(keyWord: string, limit: number) {
   const tenors = await fetchTenorsGifs(keyWord, limit);
   const giphy = await fetchGiphyGifs(keyWord, limit);
-  var urlsList: any[] = [];
+  var urlsList: string[] = [];
 
-  tenors["results"].map((gifs: any) => {
+  tenors["results"].foreach((gifs: any) => {
     urlsList.push(gifs["media"][0]["gif"]["url"]);
   });
-  giphy["data"].map((gifs: any) => {
+  giphy["data"].foreach((gifs: any) => {
     urlsList.push(gifs["images"]["original"]["url"]);
   });
   console.log(urlsList);
