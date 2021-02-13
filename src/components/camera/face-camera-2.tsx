@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useRef, useState } from "react";
+import React, { FC, RefObject, useEffect, useRef, useState } from "react";
 import { CameraComp } from "./camera";
 import * as faceapi from "face-api.js";
 import { FaceExpressions, FaceLandmarks68 } from "face-api.js";
@@ -9,18 +9,23 @@ import * as path from "path";
 type Props = {
   constraints: MediaStreamConstraints;
   videoRef: RefObject<HTMLVideoElement>;
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
+  onExpression: (expression: string) => void;
 };
 
 export const FaceCamera2Comp: FC<Props> = (props) => {
-  const { width = 640, height = 480, constraints, videoRef } = props;
+  const {
+    width = 640,
+    height = 480,
+    constraints,
+    videoRef,
+    onExpression,
+  } = props;
   const [currentExpression, setCurrentExpression] = useState("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const videoConstraints: MediaTrackConstraints = {
     ...(constraints.video as MediaTrackConstraints | undefined),
-    width,
-    height,
   };
 
   const detect = async (): Promise<
@@ -45,7 +50,7 @@ export const FaceCamera2Comp: FC<Props> = (props) => {
   const draw = async (landmarks: FaceLandmarks68) => {
     const canvasContext = canvasRef.current?.getContext("2d");
 
-    if (canvasRef.current && canvasContext) {
+    if (videoRef.current && canvasRef.current && canvasContext) {
       canvasContext.clearRect(
         0,
         0,
@@ -73,6 +78,13 @@ export const FaceCamera2Comp: FC<Props> = (props) => {
       path.join(__dirname, "/models")
     );
 
+    if (videoRef.current && canvasRef.current) {
+      videoRef.current.width = videoRef.current.videoWidth;
+      videoRef.current.height = videoRef.current.videoHeight;
+      canvasRef.current.width = videoRef.current.videoWidth;
+      canvasRef.current.height = videoRef.current.videoHeight;
+    }
+
     const loop = async () => {
       const detection = await detect();
 
@@ -90,10 +102,15 @@ export const FaceCamera2Comp: FC<Props> = (props) => {
     window.requestAnimationFrame(loop);
   };
 
+  useEffect(() => {
+    onExpression(currentExpression);
+  }, [currentExpression]);
+
   return (
     <div
       style={{
         position: "relative",
+        height: "100%",
       }}
     >
       <CameraComp
@@ -104,16 +121,23 @@ export const FaceCamera2Comp: FC<Props> = (props) => {
         videoRef={videoRef}
         videoProps={{
           onLoadedData,
+          style: {
+            width,
+            height,
+            objectFit: "cover",
+          },
         }}
       />
       <canvas
-        width={width}
-        height={height}
         ref={canvasRef}
         style={{
           position: "absolute",
           top: 0,
           left: 0,
+          zIndex: 5,
+          width,
+          height,
+          objectFit: "cover",
         }}
       />
       <div
