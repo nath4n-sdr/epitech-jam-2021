@@ -1,7 +1,6 @@
 import React, { FC, useRef, useState } from "react";
-import { CameraComp } from "./components/camera/camera";
 import { CameraSelectComp } from "./components/camera/select";
-import { FaceCameraComp } from "./components/camera/face";
+import { FaceCamera2Comp } from "./components/camera/face-2";
 
 const App: FC = () => {
   const [deviceId, setDeviceId] = useState<string>();
@@ -14,7 +13,7 @@ const App: FC = () => {
   return (
     <div>
       {deviceId ? (
-        <FaceCameraComp
+        <FaceCamera2Comp
           constraints={{ video: { deviceId } }}
           videoRef={videoRef}
         />
