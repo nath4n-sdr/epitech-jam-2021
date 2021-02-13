@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import { GifCollectionStore } from "./store/gifCollectionStore";
 import { shuffle } from "./utilities/array";
 import { GifCollection } from "./models/gifCollection";
-import { FaceCamera2Comp } from "./components/camera/face-camera-2";
+import { SuperCameraComp } from "./components/camera/super-camera";
 
 const App: FC = () => {
   const [currentExpression, setCurrentExpression] = useState("neutral");
@@ -56,7 +56,7 @@ const App: FC = () => {
           );
         })}
         <div className="col p-0" style={{ height: "30vh" }}>
-          <FaceCamera2Comp
+          <SuperCameraComp
             constraints={{ video: true }}
             videoRef={videoRef}
             width={"100%"}
