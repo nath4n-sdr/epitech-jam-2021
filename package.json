@@ -2,23 +2,45 @@
   "name": "epitech-jam-2021",
   "version": "0.1.0",
   "description": "MONKE",
-  "main": "src/index.ts",
+  "main": "src/index.tsx",
   "repository": "git@github.com:MrSquaare/epitech-jam-2021.git",
   "author": "Guillaume Bonnet <guillaume.bonnet@epitech.eu>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "browser": "browser-sync start --files dist/ --server --ss dist/ --cors",
-    "watch": "nodemon --watch src/ --ext ts --exec 'yarn build'",
-    "dev": "(yarn watch &) && (yarn browser)"
+    "build": "react-scripts build",
+    "dev": "react-scripts start",
+    "start": "serve dist/"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.14",
-    "nodemon": "^2.0.7",
+    "@types/node": "^14.14.27",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
     "typescript": "^4.1.5"
   },
   "dependencies": {
+    "@tensorflow-models/face-landmarks-detection": "^0.0.2",
     "@tensorflow/tfjs": "^3.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "^4.0.2",
+    "serve": "^11.3.2",
     "three": "^0.125.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
   }
 }

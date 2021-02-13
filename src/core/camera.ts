@@ -1,28 +1,18 @@
 export class Camera {
-  videoElement: HTMLVideoElement;
   constraints: MediaStreamConstraints;
 
   private _stream?: MediaStream;
 
-  constructor(videoElement: HTMLVideoElement, constraints: MediaStreamConstraints) {
-    this.videoElement = videoElement;
+  constructor(constraints: MediaStreamConstraints) {
     this.constraints = constraints;
   }
 
   async start(): Promise<void> {
-    try {
-      this._stream = await navigator.mediaDevices.getUserMedia(this.constraints);
-
-      this.videoElement.srcObject = this._stream;
-    } catch (e) {
-      console.log(e);
-    }
+    this._stream = await navigator.mediaDevices.getUserMedia(this.constraints);
   }
 
   async stop() {
-    const tracks = this._stream?.getTracks();
-
-    tracks?.forEach((track) => {
+    this._stream?.getTracks().forEach((track) => {
       track.stop();
     });
   }
