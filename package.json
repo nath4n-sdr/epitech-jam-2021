@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "react-scripts build",
-    "dev": "BROWSER=chromium react-scripts start",
+    "dev": "react-scripts start",
     "start": "serve dist/"
   },
   "devDependencies": {

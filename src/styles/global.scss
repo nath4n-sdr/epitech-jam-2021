@@ -84,3 +84,20 @@
     }
   }
 }
+
+.past {
+  filter: sepia(70%)
+
+.welcome-page {
+  background-color: #ffdb15;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.responsive {
+  width: 50%;
+  height: 50%;
+}
