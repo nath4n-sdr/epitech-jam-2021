@@ -12,7 +12,7 @@ export const GifGridComponent: FC<Props> = (props) => {
   const endGifs = gifs.slice(gifs.length / 2);
 
   return (
-    <div className="gif-grid grid grid-rows-3 grid-flow-col">
+    <div className="gif-grid grid grid-rows-3 grid-flow-col auto-cols-fr">
       {startGifs.map((gif) => {
         return (
           <div key={gif.url} className="item">

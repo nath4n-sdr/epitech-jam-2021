@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, RefObject, useEffect, useRef, useState } from "react";
 import { GifProvider } from "../providers/gif";
 import { audioEpoque, expressions } from "../constants/variables";
 import { GiphyGifService } from "../providers/gif/giphy";
@@ -11,13 +11,16 @@ import { ControlsComponent } from "../components/controls/controls";
 import { AudioComponent } from "../components/audio/audio";
 import { FaceWebcam } from "../components/face/face";
 import { FaceWrapper } from "../components/face/face-wrapper";
-import { FaceFilter } from "../components/face-filter/face-filter";
+import { SplashScreenComponent } from "../components/splash/splash";
+
 const Play: FC = () => {
   const gifProvider = new GifProvider(
     expressions,
     [new GiphyGifService(), new TenorGifService()],
     localStorage
   );
+
+  const [displaySplash, setDisplaySplash] = useState(true);
 
   const [audioStart, setAudioStart] = useState(0);
   const [epoque, setEpoque] = useState("present");
@@ -50,6 +53,10 @@ const Play: FC = () => {
     setEpoque(newEpoque);
   };
 
+  const onReady = () => {
+    setDisplaySplash(false);
+  };
+
   const onExpression = (expression: string) => {
     setExpression(expression);
   };
@@ -74,8 +81,8 @@ const Play: FC = () => {
     <div className={`play flex flex-col h-screen ${epoque}`}>
       <GifGridComponent gifs={randomGifs || []}>
         <FaceWrapper>
-          <FaceWebcam onExpression={onExpression} epoque={epoque} />
-          <FaceFilter futureState={epoque === "future" ? true : false} />
+          <FaceWebcam onReady={onReady} onExpression={onExpression} />
+          <canvas className={"face-filter"} />
         </FaceWrapper>
       </GifGridComponent>
       <ControlsComponent onClick={onControlsClick} />
@@ -85,6 +92,7 @@ const Play: FC = () => {
         volume={0.2}
         audioRef={audioRef}
       />
+      <SplashScreenComponent display={displaySplash} />
     </div>
   );
 };

@@ -7,16 +7,19 @@ import {
 } from "../../face/face-expression";
 
 type Props = {
+  onReady: () => void;
   onExpression: (expression: string) => void;
 };
 
 export const FaceWebcam: FC<Props> = (props) => {
-  const { onExpression } = props;
+  const { onReady, onExpression } = props;
   const webcamRef = useRef<Webcam>(null);
 
   const onUserMedia = async () => {
     await loadFaceDetection();
     await loadFaceExpression();
+
+    onReady();
 
     const loop = async () => {
       if (!webcamRef.current?.video) return;
