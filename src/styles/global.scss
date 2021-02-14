@@ -16,6 +16,9 @@
   object-fit: cover;
 }
 
+.past {
+  filter: sepia(70%)
+
 .welcome-page {
   background-color: #ffdb15;
   height: 100vh;
