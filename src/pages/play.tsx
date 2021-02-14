@@ -10,7 +10,8 @@ import { GifGridComponent } from "../components/gif/grid";
 import { ControlsComponent } from "../components/controls/controls";
 import { AudioComponent } from "../components/audio/audio";
 import { FaceWebcam } from "../components/face/face";
-
+import { FaceWrapper } from "../components/face/face-wrapper";
+import { FaceFilter } from "../components/face-filter/face-filter";
 const Play: FC = () => {
   const gifProvider = new GifProvider(
     expressions,
@@ -72,7 +73,10 @@ const Play: FC = () => {
   return (
     <>
       <GifGridComponent gifs={randomGifs || []}>
-        <FaceWebcam onExpression={onExpression} />
+        <FaceWrapper>
+          <FaceWebcam onExpression={onExpression} />
+          <FaceFilter epoque={epoque} />
+        </FaceWrapper>
       </GifGridComponent>
       <ControlsComponent onClick={onControlsClick} />
       <AudioComponent
