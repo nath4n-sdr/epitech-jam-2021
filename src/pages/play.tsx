@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { GifProvider } from "../providers/gif";
 import { audioEpoque, expressions } from "../constants/variables";
 import { GiphyGifService } from "../providers/gif/giphy";
@@ -47,8 +47,17 @@ const Play: FC = () => {
     setAudioStart(audioStart);
   };
 
+  const switchFavicon = (newEpoque: string) => {
+    const favicon = document.getElementById("favicon") as HTMLLinkElement;
+
+    if (!favicon) return;
+
+    favicon.href = `favicons/${newEpoque}.png`;
+  };
+
   const onControlsClick = (newEpoque: string) => {
     switchAudio(epoque, newEpoque);
+    switchFavicon(newEpoque);
 
     setEpoque(newEpoque);
   };
