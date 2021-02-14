@@ -33,7 +33,5 @@ export const FaceWebcam: FC<Props> = (props) => {
     window.requestAnimationFrame(loop);
   };
 
-  return (
-    <Webcam className={"webcam"} ref={webcamRef} onUserMedia={onUserMedia} />
-  );
+  return <Webcam ref={webcamRef} onUserMedia={onUserMedia} />;
 };

@@ -1,17 +1,86 @@
-@import "~bootstrap/scss/bootstrap";
+@import "~tailwindcss/dist/base.min.css";
+@import "~tailwindcss/dist/components.min.css";
+@import "~tailwindcss/dist/utilities.min.css";
 
-.gif-item {
-  height: 30vh;
+.play {
+  transition: all 250ms ease-in;
 }
 
-.gif-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.controls {
+  .button {
+    border-radius: 0.5rem;
+    padding: 2px;
+    outline: none;
+    transition: all 250ms ease-in;
+
+    .text {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 250ms ease-in;
+    }
+  }
 }
 
-.webcam {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.gif-grid {
+  .item {
+    height: 30vh;
+
+    canvas, img, video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.past {
+  &.play {
+    background-color: #FFDB15;
+    font-family: Seagram, sans-serif;
+  }
+
+  .controls {
+    .button {
+      background-color: #CF7934;
+
+      .text {
+        color: #CF7934;
+        background-color: #614D2D;
+      }
+    }
+  }
+}
+
+.present {
+  &.play {
+    background-color: #46525B;
+  }
+
+  .controls {
+    .button {
+      .text {
+        color: white;
+        background-color: #89B5BE;
+      }
+    }
+  }
+}
+
+.future {
+  &.play {
+    background-color: #090024;
+    font-family: SpaceAge, sans-serif;
+  }
+
+  .controls {
+    .button {
+      background: linear-gradient(135deg, #FF00C7, #00FFF0);
+
+      .text {
+        color: #E1C2FF;
+        background-color: #3E324D;
+      }
+    }
+  }
 }

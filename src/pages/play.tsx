@@ -27,12 +27,12 @@ const Play: FC = () => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const switchAudio = () => {
+  const switchAudio = (epoque: string, newEpoque: string) => {
     if (!audioRef.current) return;
 
     let audioStart = audioRef.current.currentTime;
 
-    if (epoque === "future") {
+    if (newEpoque === "future") {
       audioStart *= 0.91;
     }
 
@@ -43,10 +43,10 @@ const Play: FC = () => {
     setAudioStart(audioStart);
   };
 
-  const onControlsClick = (epoque: string) => {
-    setEpoque(epoque);
+  const onControlsClick = (newEpoque: string) => {
+    switchAudio(epoque, newEpoque);
 
-    switchAudio();
+    setEpoque(newEpoque);
   };
 
   const onExpression = (expression: string) => {
@@ -70,7 +70,7 @@ const Play: FC = () => {
   }, [gifCollection]);
 
   return (
-    <>
+    <div className={`play flex flex-col h-screen ${epoque}`}>
       <GifGridComponent gifs={randomGifs || []}>
         <FaceWebcam onExpression={onExpression} />
       </GifGridComponent>
@@ -81,7 +81,7 @@ const Play: FC = () => {
         volume={0.2}
         audioRef={audioRef}
       />
-    </>
+    </div>
   );
 };
 

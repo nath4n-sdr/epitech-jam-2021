@@ -5,8 +5,6 @@ import Play from "./pages/play";
 
 import "./styles/global.scss";
 
-import "bootstrap/dist/js/bootstrap.bundle";
-
 const App: FC = () => {
   return (
     <BrowserRouter>

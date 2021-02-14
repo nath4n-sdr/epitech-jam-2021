@@ -8,15 +8,23 @@ export const ControlsComponent: FC<Props> = (props) => {
   const { onClick } = props;
 
   return (
-    <div className="d-flex justify-content-around buttons flex-grow-0">
-      <button type="button" className="btn" onClick={() => onClick("past")}>
-        Past
+    <div className={"controls flex-grow flex justify-around items-center"}>
+      <button type="button" className="button" onClick={() => onClick("past")}>
+        <span className={"text"}>Past</span>
       </button>
-      <button type="button" className="btn" onClick={() => onClick("present")}>
-        Present
+      <button
+        type="button"
+        className="button"
+        onClick={() => onClick("present")}
+      >
+        <span className={"text"}>Present</span>
       </button>
-      <button type="button" className="btn" onClick={() => onClick("future")}>
-        Future
+      <button
+        type="button"
+        className="button"
+        onClick={() => onClick("future")}
+      >
+        <span className={"text"}>Future</span>
       </button>
     </div>
   );
