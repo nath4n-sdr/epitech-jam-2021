@@ -74,8 +74,8 @@ const Play: FC = () => {
     <>
       <GifGridComponent gifs={randomGifs || []}>
         <FaceWrapper>
-          <FaceWebcam onExpression={onExpression} />
-          <FaceFilter epoque={epoque} />
+          <FaceWebcam onExpression={onExpression} epoque={epoque} />
+          <FaceFilter futureState={epoque === "future" ? true : false} />
         </FaceWrapper>
       </GifGridComponent>
       <ControlsComponent onClick={onControlsClick} />

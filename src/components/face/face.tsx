@@ -1,6 +1,7 @@
 import React, { FC, useRef } from "react";
 import Webcam from "react-webcam";
 import { loadFaceDetection } from "../../face/face-detection";
+import "../../styles/global.scss";
 import {
   detectFaceExpression,
   loadFaceExpression,
@@ -8,10 +9,11 @@ import {
 
 type Props = {
   onExpression: (expression: string) => void;
+  epoque: string;
 };
 
 export const FaceWebcam: FC<Props> = (props) => {
-  const { onExpression } = props;
+  const { onExpression, epoque } = props;
   const webcamRef = useRef<Webcam>(null);
 
   const onUserMedia = async () => {
@@ -34,6 +36,10 @@ export const FaceWebcam: FC<Props> = (props) => {
   };
 
   return (
-    <Webcam className={"webcam"} ref={webcamRef} onUserMedia={onUserMedia} />
+    <Webcam
+      className={`webcam ${epoque}`}
+      ref={webcamRef}
+      onUserMedia={onUserMedia}
+    />
   );
 };
