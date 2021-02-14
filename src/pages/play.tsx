@@ -8,7 +8,7 @@ import { Gif } from "../models/gif";
 import { shuffle } from "../utilities/array";
 import { GifGridComponent } from "../components/gif/grid";
 import { ControlsComponent } from "../components/controls/controls";
-import { AudioComponent } from "../components/audio/audioComponent";
+import { AudioComponent } from "../components/audio/audio";
 import { FaceWebcam } from "../components/face/face";
 
 const Play: FC = () => {
