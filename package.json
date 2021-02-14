@@ -4,12 +4,12 @@
   "description": "MONKE",
   "main": "src/index.tsx",
   "repository": "git@github.com:MrSquaare/epitech-jam-2021.git",
-  "author": "Guillaume Bonnet <guillaume.bonnet@epitech.eu>",
+  "author": "The MONKE Team",
   "license": "MIT",
   "scripts": {
     "build": "react-scripts build",
     "dev": "react-scripts start",
-    "start": "serve dist/"
+    "start": "serve --cors build/"
   },
   "devDependencies": {
     "@types/react": "^17.0.2",
