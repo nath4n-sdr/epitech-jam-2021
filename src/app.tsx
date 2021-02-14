@@ -1,85 +1,69 @@
-import React, { FC, useEffect, useRef, useState } from "react";
-import { GifCollectionStore } from "./store/gifCollectionStore";
-import { shuffle } from "./utilities/array";
-import { GifCollection } from "./models/gifCollection";
-import { FaceCamera2Comp } from "./components/camera/face-camera-2";
+import React, { FC, useRef, useState } from "react";
+import { Audio } from "./components/audio";
+
+type style = "past" | "present" | "future";
 
 const App: FC = () => {
-  const [currentExpression, setCurrentExpression] = useState("neutral");
-  const [startGifs, setStartGifs] = useState<string[]>([]);
-  const [endGifs, setEndGifs] = useState<string[]>([]);
-  const gifCollectionStore = new GifCollectionStore();
-  const gifCollections: GifCollection[] = [];
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [currentStyle, setCurrentStyle] = useState<style>("past");
+  const [start, setStart] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-  const verifyStore = async () => {
-    if (!gifCollectionStore.get()) {
-      await gifCollectionStore.fetch();
+  const switchAudio = (style: style, start: number, volume?: number) => {
+    if (style === "future") {
+      start *= 0.91;
     }
 
-    const localGifCollections = gifCollectionStore.get();
+    if (currentStyle === "future") {
+      start *= 1 / 0.91;
+    }
 
-    if (localGifCollections) {
-      gifCollections.push(...localGifCollections);
+    setCurrentStyle(style);
+    setStart(start);
+
+    if (audioRef.current && volume) {
+      audioRef.current.volume = volume;
     }
   };
-
-  const setGifsByExpression = (expression: string) => {
-    const gifCollection = gifCollections.find(
-      (gifCollection) => gifCollection.expression === expression
-    );
-
-    if (!gifCollection) return;
-
-    const shuffledGifs = shuffle(gifCollection.gifs);
-
-    setStartGifs(shuffledGifs.slice(0, 4));
-    setEndGifs(shuffledGifs.slice(4, 8));
-  };
-
-  useEffect(() => {
-    (async () => {
-      await verifyStore();
-
-      setGifsByExpression(currentExpression);
-    })();
-  }, [currentExpression]);
 
   return (
     <div className="d-flex flex-column">
-      <div className="row row-cols-3 flex-grow-1 m-0" style={{}}>
-        {startGifs?.map((gif) => {
-          return (
-            <div key={gif} className={"col p-0"} style={{ height: "30vh" }}>
-              <img src={gif} className="rounded gif" alt={"Gif"} />
-            </div>
-          );
-        })}
-        <div className="col p-0" style={{ height: "30vh" }}>
-          <FaceCamera2Comp
-            constraints={{ video: true }}
-            videoRef={videoRef}
-            width={"100%"}
-            height={"100%"}
-            onExpression={setCurrentExpression}
-          />
-        </div>
-        {endGifs?.map((gif) => {
-          return (
-            <div key={gif} className={"col p-0"} style={{ height: "30vh" }}>
-              <img src={gif} className="rounded gif" alt={"Gif"} />
-            </div>
-          );
-        })}
-      </div>
+      <Audio
+        music={{
+          past: "audios/past.mp3",
+          present: "audios/present.mp3",
+          future: "audios/future.mp3",
+        }}
+        currentStyle={currentStyle}
+        start={start}
+        volume={0.2}
+        audioRef={audioRef}
+      />
       <div className="d-flex justify-content-around buttons flex-grow-0">
-        <button type="button" className="btn button-past">
+        <button
+          type="button"
+          className="btn button-past"
+          onClick={() =>
+            switchAudio("past", audioRef.current?.currentTime || 0, 0.3)
+          }
+        >
           Past
         </button>
-        <button type="button" className="btn button-present">
+        <button
+          type="button"
+          className="btn button-present"
+          onClick={() =>
+            switchAudio("present", audioRef.current?.currentTime || 0, 0.15)
+          }
+        >
           Present
         </button>
-        <button type="button" className="btn button-future">
+        <button
+          type="button"
+          className="btn button-future"
+          onClick={() =>
+            switchAudio("future", audioRef.current!.currentTime, 0.1)
+          }
+        >
           Future
         </button>
       </div>
