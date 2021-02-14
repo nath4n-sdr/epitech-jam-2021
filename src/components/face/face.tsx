@@ -1,24 +1,25 @@
 import React, { FC, useRef } from "react";
 import Webcam from "react-webcam";
 import { loadFaceDetection } from "../../face/face-detection";
-import "../../styles/global.scss";
 import {
   detectFaceExpression,
   loadFaceExpression,
 } from "../../face/face-expression";
 
 type Props = {
+  onReady: () => void;
   onExpression: (expression: string) => void;
-  epoque: string;
 };
 
 export const FaceWebcam: FC<Props> = (props) => {
-  const { onExpression, epoque } = props;
+  const { onReady, onExpression } = props;
   const webcamRef = useRef<Webcam>(null);
 
   const onUserMedia = async () => {
     await loadFaceDetection();
     await loadFaceExpression();
+
+    onReady();
 
     const loop = async () => {
       if (!webcamRef.current?.video) return;
@@ -35,11 +36,5 @@ export const FaceWebcam: FC<Props> = (props) => {
     window.requestAnimationFrame(loop);
   };
 
-  return (
-    <Webcam
-      className={`webcam ${epoque}`}
-      ref={webcamRef}
-      onUserMedia={onUserMedia}
-    />
-  );
+  return <Webcam ref={webcamRef} onUserMedia={onUserMedia} />;
 };

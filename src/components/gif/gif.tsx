@@ -8,5 +8,5 @@ type Props = {
 export const GifComponent: FC<Props> = (props) => {
   const { gif } = props;
 
-  return <img className={"gif-image"} src={gif.url} alt={gif.alt} />;
+  return <img src={gif.url} alt={gif.alt} />;
 };

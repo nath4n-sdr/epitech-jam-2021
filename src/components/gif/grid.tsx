@@ -12,18 +12,18 @@ export const GifGridComponent: FC<Props> = (props) => {
   const endGifs = gifs.slice(gifs.length / 2);
 
   return (
-    <div className="row row-cols-3 m-0">
+    <div className="gif-grid grid grid-rows-3 grid-flow-col auto-cols-fr">
       {startGifs.map((gif) => {
         return (
-          <div key={gif.url} className="col p-0 gif-item">
+          <div key={gif.url} className="item">
             <GifComponent gif={gif} />
           </div>
         );
       })}
-      <div className="col p-0 gif-item">{children}</div>
+      <div className="item">{children}</div>
       {endGifs.map((gif) => {
         return (
-          <div key={gif.url} className="col p-0 gif-item">
+          <div key={gif.url} className="item">
             <GifComponent gif={gif} />
           </div>
         );

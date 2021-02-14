@@ -11,13 +11,16 @@ import { ControlsComponent } from "../components/controls/controls";
 import { AudioComponent } from "../components/audio/audio";
 import { FaceWebcam } from "../components/face/face";
 import { FaceWrapper } from "../components/face/face-wrapper";
-import { FaceFilter } from "../components/face-filter/face-filter";
+import { SplashScreenComponent } from "../components/splash/splash";
+
 const Play: FC = () => {
   const gifProvider = new GifProvider(
     expressions,
     [new GiphyGifService(), new TenorGifService()],
     localStorage
   );
+
+  const [displaySplash, setDisplaySplash] = useState(true);
 
   const [audioStart, setAudioStart] = useState(0);
   const [epoque, setEpoque] = useState("present");
@@ -28,12 +31,12 @@ const Play: FC = () => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const switchAudio = () => {
+  const switchAudio = (epoque: string, newEpoque: string) => {
     if (!audioRef.current) return;
 
     let audioStart = audioRef.current.currentTime;
 
-    if (epoque === "future") {
+    if (newEpoque === "future") {
       audioStart *= 0.91;
     }
 
@@ -44,10 +47,23 @@ const Play: FC = () => {
     setAudioStart(audioStart);
   };
 
-  const onControlsClick = (epoque: string) => {
-    setEpoque(epoque);
+  const switchFavicon = (newEpoque: string) => {
+    const favicon = document.getElementById("favicon") as HTMLLinkElement;
 
-    switchAudio();
+    if (!favicon) return;
+
+    favicon.href = `favicons/${newEpoque}.png`;
+  };
+
+  const onControlsClick = (newEpoque: string) => {
+    switchAudio(epoque, newEpoque);
+    switchFavicon(newEpoque);
+
+    setEpoque(newEpoque);
+  };
+
+  const onReady = () => {
+    setDisplaySplash(false);
   };
 
   const onExpression = (expression: string) => {
@@ -71,11 +87,11 @@ const Play: FC = () => {
   }, [gifCollection]);
 
   return (
-    <>
+    <div className={`play flex flex-col h-screen ${epoque}`}>
       <GifGridComponent gifs={randomGifs || []}>
         <FaceWrapper>
-          <FaceWebcam onExpression={onExpression} epoque={epoque} />
-          <FaceFilter futureState={epoque === "future" ? true : false} />
+          <FaceWebcam onReady={onReady} onExpression={onExpression} />
+          <canvas className={"face-filter"} />
         </FaceWrapper>
       </GifGridComponent>
       <ControlsComponent onClick={onControlsClick} />
@@ -85,7 +101,8 @@ const Play: FC = () => {
         volume={0.2}
         audioRef={audioRef}
       />
-    </>
+      <SplashScreenComponent display={displaySplash} />
+    </div>
   );
 };
 
